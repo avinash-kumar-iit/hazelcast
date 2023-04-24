@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hazelcast
+        xsi:schemaLocation="http://www.hazelcast.com/schema/config https://hazelcast.com/schema/config/hazelcast-config-3.9.xsd"
+        xmlns="http://www.hazelcast.com/schema/config"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <!-- name of the instance -->
+    <instance-name>XML_Hazelcast_Instance</instance-name>
+
+<!--    <management-center enabled="true" update-interval="3">http://localhost:8081/mancenter</management-center>-->
+<!--    <management-center scripting-enabled="true" >http://localhost:8081/mancenter</management-center>-->
+    <map name="CHANNEL_STEPS_MAP">
+        <backup-count>1</backup-count>
+<!--        <eviction-policy>LFU</eviction-policy>-->
+        <in-memory-format>OBJECT</in-memory-format>
+<!--        <max-idle-seconds>3600</max-idle-seconds>-->
+        <eviction eviction-policy="LFU" />
+       <!--  <time-to-live-seconds>21600</time-to-live-seconds> -->
+        <map-store enabled="true">
+            <class-name>com.hdfcbank.ef.hazelcastserver.loaders.JourneyStepsLoader</class-name>
+            <write-delay-seconds>0</write-delay-seconds>
+        </map-store>
+    </map>
+    <map name="MESSAGE_PARAM_MAP">
+        <backup-count>1</backup-count>
+<!--        <eviction-policy>LFU</eviction-policy>-->
+        <in-memory-format>OBJECT</in-memory-format>
+<!--        <max-idle-seconds>3600</max-idle-seconds>-->
+        <eviction eviction-policy="LFU" />
+       <!--  <time-to-live-seconds>21600</time-to-live-seconds> -->
+        <map-store enabled="true">
+            <class-name>com.hdfcbank.ef.hazelcastserver.loaders.MessageParamLoader</class-name>
+            <write-delay-seconds>0</write-delay-seconds>
+        </map-store>
+    </map>
+    <map name="MESSAGE_TRANSFORMATION_MAP">
+        <backup-count>1</backup-count>
+<!--        <eviction-policy>LFU</eviction-policy>-->
+        <in-memory-format>OBJECT</in-memory-format>
+        <max-idle-seconds>3600</max-idle-seconds>
+        <eviction eviction-policy="LFU" />
+       <!--  <time-to-live-seconds>21600</time-to-live-seconds> -->
+        <map-store enabled="true">
+            <class-name>com.hdfcbank.ef.hazelcastserver.loaders.MessageTransformationLoader</class-name>
+            <write-delay-seconds>0</write-delay-seconds>
+        </map-store>
+    </map>
+     <map name="DERIVATION_RULES_MAP">
+        <backup-count>1</backup-count>
+<!--        <eviction-policy>LFU</eviction-policy>-->
+        <in-memory-format>OBJECT</in-memory-format>
+<!--        <max-idle-seconds>3600</max-idle-seconds>-->
+        <eviction eviction-policy="LFU" />
+       <!--  <time-to-live-seconds>21600</time-to-live-seconds> -->
+        <map-store enabled="true">
+            <class-name>com.hdfcbank.ef.hazelcastserver.loaders.DerivationRulesLoader</class-name>
+            <write-delay-seconds>0</write-delay-seconds>
+        </map-store>
+    </map>
+
+    <map name="PROCESS_CONTEXT_MAP">
+        <backup-count>1</backup-count>
+        <!--        <eviction-policy>LFU</eviction-policy>-->
+        <in-memory-format>OBJECT</in-memory-format>
+        <!--        <max-idle-seconds>3600</max-idle-seconds>-->
+        <eviction eviction-policy="LFU"/>
+        <time-to-live-seconds>300</time-to-live-seconds>
+        <map-store enabled="true">
+            <class-name>com.hdfcbank.ef.hazelcastserver.loaders.ProcessContextTnxMapLoader</class-name>
+            <write-delay-seconds>0</write-delay-seconds>
+        </map-store>
+    </map>
+
+</hazelcast>

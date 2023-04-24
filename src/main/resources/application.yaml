@@ -1,0 +1,11 @@
+
+server:
+  port: 8084
+
+
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://3.225.253.163:5433/yugabyte?ApplicationName=Nishant_local&currentSchema=efdev01
+    username: yugabyte
+    password: efpostgres
+    driver-class: org.postgresql.Driver
