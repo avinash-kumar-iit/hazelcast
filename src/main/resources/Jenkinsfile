@@ -1,4 +1,4 @@
-@Library('demogroovy')package com.hdfc.demo
+@Library('demogroovy')package com.hdfc.*
 def dm = new demo(this)
 pipeline {
     agent any
