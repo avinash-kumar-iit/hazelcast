@@ -1,4 +1,4 @@
-@Library('demo-groovy') _
+@Library('demo-groovy')_
 
 pipeline {
     agent any
