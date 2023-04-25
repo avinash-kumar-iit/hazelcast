@@ -2,12 +2,11 @@ pipeline {
     agent any
 
     stages {
-	
-	    stage("Clone the project") {
-		steps {
-        git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
-		}
-  }
+        stage('Clone Repository') {
+            steps {
+                 git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git
+            }
+        }
 
         stage('Build') {
             steps {
@@ -15,9 +14,18 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
         stage('Deploy') {
             steps {
-                sh 'java -jar target/hazelcast-server-0.0.1-SNAPSHOT'
+                springBoot {
+                    app = 'hazelcast-server-0.0.1-SNAPSHOT.jar'
+                    args = '--server.port=8080'
+                }
             }
         }
     }
