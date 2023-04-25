@@ -1,3 +1,4 @@
+package com.hdfc
 @Library('demogroovy') _
 
 pipeline {
@@ -11,10 +12,10 @@ pipeline {
         }
         stage ('Example') {
             steps {
-                // hello.info 'Starting' 
+                // Demo.info 'Starting' 
                 script { 
-                    hello.info 'Starting'
-                    hello.warning 'Nothing to do!'
+                    Demo.info 'Starting'
+                    Demo.warning 'Nothing to do!'
                 }
             }
         }
