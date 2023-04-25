@@ -1,5 +1,5 @@
 @Library('demogroovy')_
-
+def a = load('demo.groovy')
 pipeline {
     agent any
     stages {
@@ -13,8 +13,8 @@ pipeline {
             steps {
                 // demo.info 'Starting' 
                 script { 
-                    demo.info 'Starting'
-                    demo.warning 'Nothing to do!'
+                    a.info 'Starting'
+                    a.warning 'Nothing to do!'
                 }
             }
         }
