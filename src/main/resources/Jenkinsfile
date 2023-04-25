@@ -11,10 +11,10 @@ pipeline {
         }
         stage ('Example') {
             steps {
-                // log.info 'Starting' 
+                // hello.info 'Starting' 
                 script { 
-                    log.info 'Starting'
-                    log.warning 'Nothing to do!'
+                    hello.info 'Starting'
+                    hello.warning 'Nothing to do!'
                 }
             }
         }
