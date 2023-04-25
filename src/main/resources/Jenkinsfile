@@ -1,4 +1,4 @@
-@Library('demogroovy') package com.hdfc.foo.Utilities
+@Library('demogroovy') package com.hdfc.foo.*
 
 def utils = new Utilities(this)
 node {
