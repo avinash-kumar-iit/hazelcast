@@ -1,16 +1,6 @@
-@Library('demogroovy')_
-pipeline {
-    agent any
-    stages {
-	
-        stage ('Example') {
-            steps {
-                // demo.info 'Starting' 
-                script { 
-                    info 'Starting'
-                    warning 'Nothing to do!'
-                }
-            }
-        }
-    }
+@Library('utils') package com.hdfc.foo.Utilities
+
+def utils = new Utilities(this)
+node {
+  utils.mvn 'clean package'
 }
