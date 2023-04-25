@@ -1,6 +1,6 @@
 node {
   stage("Clone the project") {
-    git branch: 'main', url: 'https://github.com/nkchauhan003/jenkins-demo.git'
+    git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
   }
 
   stage("Compilation") {
@@ -12,7 +12,7 @@ node {
       sh "./mvnw test -Punit"
     }
     stage("Deployment") {
-      sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
+      sh 'nohup ./mvnw spring-boot:run -Dserver.port=8084 &'
     }
   }
 }
