@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                 git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git
+                 git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
             }
         }
 
