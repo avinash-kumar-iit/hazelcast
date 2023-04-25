@@ -3,16 +3,16 @@ node {
     git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
   }
 
-  stage("Compilation") {
-    sh "./mvnw clean install -DskipTests"
+  stage("Build") {
+    sh "./mvnw clean package"
   }
-
+  
   stage("Tests and Deployment") {
     stage("Runing unit tests") {
       sh "./mvnw test -Punit"
     }
-    stage("Deployment") {
-      sh 'nohup ./mvnw spring-boot:run -Dserver.port=8084 &'
+    stage("Deploy") {
+      sh 'java -jar target/hazelcast-server-0.0.1-SNAPSHOT'
     }
   }
 }
