@@ -1,4 +1,6 @@
 node {
+  agent any
+  
   stage("Clone the project") {
     git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
   }
