@@ -1,6 +1,5 @@
-package com.hdfc
-@Library('demogroovy') _
-
+@Library('demogroovy')package com.hdfc.demo
+def dm = new demo(this)
 pipeline {
     agent any
     stages {
@@ -14,8 +13,8 @@ pipeline {
             steps {
                 // Demo.info 'Starting' 
                 script { 
-                    Demo.info 'Starting'
-                    Demo.warning 'Nothing to do!'
+                    dm.info 'Starting'
+                    dm.warning 'Nothing to do!'
                 }
             }
         }
