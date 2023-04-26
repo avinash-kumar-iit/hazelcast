@@ -2,30 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage ('Compile Stage') {
-
+        stage('Checkout') {
             steps {
-                withMaven(maven : 'maven_3_9_1') {
-                    sh 'mvn clean compile'
-                }
+                 git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
             }
         }
 
-        stage ('Testing Stage') {
-
+        stage('Build') {
             steps {
-                withMaven(maven : 'maven_3_9_1') {
-                    sh 'mvn test'
-                }
+                sh 'mvn clean package'
             }
         }
 
-
-        stage ('Deployment Stage') {
+        stage('Test') {
             steps {
-                withMaven(maven : 'maven_3_9_1') {
-                    sh 'mvn deploy'
-                }
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'java -jar target/hazelcast-server-0.0.1-SNAPSHOT.jar'
             }
         }
     }
