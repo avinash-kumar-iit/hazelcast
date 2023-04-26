@@ -1,19 +1,35 @@
 @Library('sharedlibs') _
+
 pipeline {
     agent any
-	
+    tools {
+        maven 'Maven 3.9.1'
+        jdk 'jdk-11.0.1'
+    }
     stages {
-        stage ('demo') {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+		stage ('demo') {
             steps {
                 welcome("Avinash Kumar")
             }
         }
-		stage('Build') {
+
+        stage ('Build') {
             steps {
-                 git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
-                 sh 'mvn -B -DskipTests clean package' 
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
             }
         }
     }
 }
-
