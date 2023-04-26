@@ -18,6 +18,12 @@ pipeline {
 			}
         }
 
+		stage ('logs') {
+			steps {
+			  log.info("sharedlibs is working now...")
+			  log.warning("need to upgrade further...")
+			}
+        }
         stage ('Build') {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
