@@ -4,10 +4,6 @@ pipeline {
 	environment {
 		mavenHome = tool 'jenkins-maven'
 	}
-
-	tools {
-		jdk 'java-11'
-	}
 	
     stages {
         stage ('demo') {
