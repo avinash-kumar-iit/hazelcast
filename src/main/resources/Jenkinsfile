@@ -11,7 +11,7 @@ pipeline {
 		stage('Build') {
             steps {
                  git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
-                {sh 'mvn -B -DskipTests clean package' }
+                 sh 'mvn -B -DskipTests clean package' 
             }
         }
     }
