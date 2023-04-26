@@ -1,26 +1,30 @@
-@Library('sharedlibs') _
-
 pipeline {
     agent any
-    tools {
-        maven 'MAVEN_HOME'
-        jdk 'JAVA_HOME'
-    }
+
     stages {
-       
-		stage ('demo') {
+        stage ('Compile Stage') {
+
             steps {
-                welcome("Avinash Kumar")
+                withMaven(maven : 'maven_3_9_1') {
+                    sh 'mvn clean compile'
+                }
             }
         }
 
-        stage ('Build') {
+        stage ('Testing Stage') {
+
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                withMaven(maven : 'maven_3_9_1') {
+                    sh 'mvn test'
+                }
             }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
+        }
+
+
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'maven_3_9_1') {
+                    sh 'mvn deploy'
                 }
             }
         }
