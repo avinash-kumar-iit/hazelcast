@@ -12,6 +12,10 @@ pipeline {
             steps {
                 welcome("Avinash Kumar")
             }
+			steps {
+			  log.info("sharedlibs is working now...")
+			  log.warning("need to upgrade further...")
+			}
         }
 
         stage ('Build') {
