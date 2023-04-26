@@ -21,7 +21,10 @@ pipeline {
 
         stage ('Build') {
             steps {
+			    script {
+			    sh "echo $JAVA_HOME"  
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
+				}
             }
             post {
                 success {
@@ -31,3 +34,9 @@ pipeline {
         }
     }
 }
+
+
+
+
+
+
