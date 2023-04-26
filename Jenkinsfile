@@ -25,7 +25,7 @@ pipeline {
 				cleanWs()
 				sh "mvn -version"
 			    sh "echo $JAVA_HOME"  
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                sh 'mvn -Dmaven.test.failure.ignore=true clean package' 
 				}
             }
             post {
