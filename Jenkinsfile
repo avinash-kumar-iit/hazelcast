@@ -1,26 +1,19 @@
 @Library('sharedlibs') _
-
-node {
-   
-   stage ('demo') {
+pipeline {
+    agent any
+	
+    stages {
+        stage ('demo') {
             steps {
                 welcome("Avinash Kumar")
             }
         }
-  stage("Clone the project") {
-    git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
-  }
-
-  stage("Compilation") {
-    sh "./mvnw clean install -DskipTests"
-  }
-
-  stage("Tests and Deployment") {
-    stage("Runing unit tests") {
-      sh "./mvnw test -Punit"
+		stage('Build') {
+            steps {
+                 git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
+                {sh 'mvn -B -DskipTests clean package' }
+            }
+        }
     }
-    stage("Deployment") {
-      sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
-    }
-  }
 }
+
