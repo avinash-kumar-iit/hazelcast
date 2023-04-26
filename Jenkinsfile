@@ -7,5 +7,10 @@ pipeline {
                 welcome("Avinash Kumar")
             }
         }
+		stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
     }
 }
