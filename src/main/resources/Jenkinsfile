@@ -1,6 +1,14 @@
 @Library('sharedlibs') _
 pipeline {
     agent any
+	environment {
+		mavenHome = tool 'jenkins-maven'
+	}
+
+	tools {
+		jdk 'java-11'
+	}
+	
     stages {
         stage ('demo') {
             steps {
@@ -9,7 +17,7 @@ pipeline {
         }
 		stage('Build') {
             steps {
-                sh "mvn -Dmaven.test.failure.ignore=true clean install"
+                bat "mvn clean install -DskipTests"
             }
         }
     }
