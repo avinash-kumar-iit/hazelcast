@@ -1,28 +1,27 @@
+@Library('sharedlibs') _
+
 pipeline {
     agent any
-
+    tools {
+        maven 'MAVEN_HOME'
+        jdk 'JAVA_HOME'
+    }
     stages {
-        stage('Checkout') {
+       
+		stage ('demo') {
             steps {
-                 git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
+                welcome("Avinash Kumar")
             }
         }
 
-        stage('Build') {
+        stage ('Build') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                sh 'java -jar target/hazelcast-server-0.0.1-SNAPSHOT.jar'
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
             }
         }
     }
