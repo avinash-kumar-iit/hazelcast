@@ -1,14 +1,10 @@
-@Library('demogroovy') import static com.hdfc.foo.Utilities.*
+@Library('sharedlibs') _
 pipeline {
-    agent none
+    agent any
     stages {
-        stage ('Example') {
+        stage ('demo') {
             steps {
-                // log.info 'Starting' 
-                script { 
-                    Utilities.info 'Starting'
-                    Utilities.warning 'Nothing to do!'
-                }
+                welcome("Avinash Kumar")
             }
         }
     }
