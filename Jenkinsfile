@@ -11,16 +11,14 @@ pipeline {
 		stage ('demo') {
             steps {
                 welcome("Avinash Kumar")
+				script{
+				log.info("sharedlibs is working now...")
+			    log.warning("need to upgrade further...")
+				}
             }
 			
         }
 
-		stage ('logs') {
-			steps {
-			  log.info("sharedlibs is working now...")
-			  log.warning("need to upgrade further...")
-			}
-        }
         stage ('Build') {
             steps {
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
