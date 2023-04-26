@@ -22,6 +22,8 @@ pipeline {
         stage ('Build') {
             steps {
 			    script {
+				cleanWs()
+				sh "mvn -version"
 			    sh "echo $JAVA_HOME"  
                 sh 'mvn -Dmaven.test.failure.ignore=true install' 
 				}
