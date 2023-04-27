@@ -2,11 +2,18 @@
 
 pipeline {
     agent any
-    tools {
-        maven 'MAVEN_HOME'
-        jdk 'JAVA_HOME'
-    }
+	
+	environment {
+	   PATH = "C:\Program Files\Maven\apache-maven-3.9.1\bin:$PATH"
+	}
+  
     stages {
+	
+	  stage('git clone') {
+            steps {
+                 git branch: 'main', url: 'https://github.com/avinash-kumar-iit/hazelcast.git'
+            }
+        }
        
 		stage ('demo') {
             steps {
@@ -21,12 +28,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-			    script {
-				cleanWs()
-				sh "mvn -version"
-			    sh "echo $JAVA_HOME"  
-                sh 'mvn -Dmaven.test.failure.ignore=true clean package' 
-				}
+                sh "mvn clean install" 
             }
             post {
                 success {
@@ -36,9 +38,3 @@ pipeline {
         }
     }
 }
-
-
-
-
-
-
