@@ -4,7 +4,7 @@ pipeline {
     agent any
 	
 	environment {
-	   PATH = "C:/Program Files/Java/jdk-11.0.1:$PATH"
+	   PATH = "C:/Program Files/Java/jdk-11.0.1/bin:$PATH"
 	}
   
     stages {
